@@ -1,0 +1,360 @@
+# 📥 Max Downloader — MD Lite App
+
+> A lightweight, easy-to-use desktop video/audio downloader with a graphical interface, built on top of **yt-dlp** and **FFmpeg**.
+
+![Version](https://img.shields.io/badge/version-2.1.2-blue)
+![Python](https://img.shields.io/badge/Python-3.10%2B-yellow)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+---
+
+## 📋 Table of Contents
+
+- [About](#-about)
+- [Features](#-features)
+- [Screenshots](#-screenshots)
+- [Download (Executable)](#-download-executable)
+- [Installation (from source)](#-installation-from-source)
+- [Requirements](#-requirements)
+- [Usage](#-usage)
+- [Supported Sites](#-supported-sites)
+- [Output & File Structure](#-output--file-structure)
+- [Download History](#-download-history)
+- [Settings](#-settings)
+- [Update](#-update)
+- [Project Structure](#-project-structure)
+- [Building the Executable](#-building-the-executable)
+- [Troubleshooting](#-troubleshooting)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 📌 About
+
+**MD Lite App** is a desktop application that lets you download videos and audio from YouTube and hundreds of other websites with just a few clicks. No command-line knowledge required. Simply paste a link, choose your options, and download.
+
+It is built with Python using **Tkinter** for the interface and relies on the powerful **yt-dlp** and **FFmpeg** tools under the hood for all media processing.
+
+---
+
+## ✨ Features
+
+- 🎬 **Download videos** in MP4 format with quality selection (1080p, 720p, 480p, 360p)
+- 🎵 **Download audio** in MP3 format (best quality, re-encoded with FFmpeg)
+- 📋 **Playlist support** — download an entire YouTube playlist into an organized folder
+- 🌍 **Audio language selection** — choose a specific audio track when multiple languages are available
+- 🔗 **Generic URL support** — works with YouTube and hundreds of other supported sites (Twitter/X, Vimeo, TikTok, etc.)
+- 📁 **Custom output folder** — choose exactly where your files are saved
+- 💾 **Download history** — keeps a local log of all your downloads with title, format, size, and timestamp
+- 🔄 **Built-in updater** — update yt-dlp directly from the app's Update tab
+- ⚙️ **Persistent settings** — remembers your last output folder and preferred format
+- 📝 **Logging** — detailed logs saved locally for debugging
+
+---
+
+## 🖥️ Screenshots
+
+> *(Add screenshots of your app here)*
+
+| Main Download Tab | Update Tab |
+|:-----------------:|:----------:|
+| ![download tab](screenshots/download_tab.png) | ![update tab](screenshots/update_tab.png) |
+
+---
+
+## 📦 Download (Executable)
+
+> **No Python installation required!**
+
+The easiest way to use MD Lite App is to download the pre-built `.exe` file (Windows):
+
+1. Go to the [**Releases**](../../releases) page
+2. Download the latest `MD_Lite_App_v2.1.2.exe`
+3. Place it in a folder alongside `yt-dlp.exe` and the `ffmpeg/` folder (see below)
+4. Double-click and run — no installation needed
+
+### Required folder structure for the `.exe`:
+
+```
+📂 MD Lite App/
+├── MD_Lite_App_v2.1.2.exe
+├── yt-dlp.exe
+├── lite_app_logo.ico         ← (optional, for the window icon)
+└── 📂 ffmpeg/
+    └── ffmpeg.exe
+```
+
+> **Download dependencies:**
+> - [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases/latest) — grab `yt-dlp.exe`
+> - [FFmpeg](https://www.gyan.dev/ffmpeg/builds/) — grab the `ffmpeg-release-essentials.zip`, extract and place `ffmpeg.exe` inside the `ffmpeg/` subfolder
+
+---
+
+## 🛠️ Installation (from source)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/md-lite-app.git
+cd md-lite-app
+```
+
+### 2. Install Python dependencies
+
+```bash
+pip install requests
+```
+
+> `tkinter` is included in the standard Python distribution. If it's missing on Linux:
+> ```bash
+> sudo apt install python3-tk
+> ```
+
+### 3. Add yt-dlp and FFmpeg
+
+Place the binaries next to `main.py` (or your script file):
+
+```
+📂 md-lite-app/
+├── main.py
+├── yt-dlp              ← yt-dlp binary (yt-dlp.exe on Windows)
+└── 📂 ffmpeg/
+    └── ffmpeg          ← ffmpeg binary (ffmpeg.exe on Windows)
+```
+
+### 4. Run the app
+
+```bash
+python main.py
+```
+
+---
+
+## 📋 Requirements
+
+| Dependency | Version | Notes |
+|---|---|---|
+| Python | 3.10+ | Required for `str \| None` type hints |
+| tkinter | Built-in | Included with Python |
+| requests | Latest | `pip install requests` |
+| yt-dlp | Latest | External binary |
+| FFmpeg | Latest | External binary (inside `ffmpeg/` folder) |
+
+---
+
+## 🚀 Usage
+
+### Downloading a YouTube video
+
+1. Paste a YouTube URL into the input field
+2. Click **Search** — the app will fetch the video title, available resolutions, and audio languages
+3. Select your desired **Quality**, **Audio Language**, and **Format** (MP4 or MP3)
+4. Choose an output folder with **Change...**
+5. Click **Start Download**
+
+### Downloading a YouTube playlist
+
+1. Paste the playlist URL and click **Search**
+2. When a playlist is detected, a checkbox appears: *"Download entire playlist (N videos)"*
+3. Check it and click **Start Download** — all videos will be saved in a named subfolder
+
+### Downloading from other websites
+
+1. Paste any URL (TikTok, Vimeo, Twitter/X, etc.) and click **Search**
+2. The app detects it as a generic URL and proceeds directly to download options
+3. Select format and output folder, then click **Start Download**
+
+### Audio-only download (MP3)
+
+- Select **MP3** in the Format dropdown before clicking **Start Download**
+- The audio will be extracted and converted to MP3 at the best available quality
+
+---
+
+## 🌐 Supported Sites
+
+MD Lite App supports **all websites that yt-dlp supports**, including:
+
+- ✅ YouTube (videos, shorts, playlists, channels)
+- ✅ Twitter / X
+- ✅ TikTok
+- ✅ Vimeo
+- ✅ Reddit
+- ✅ Twitch (clips and VODs)
+- ✅ Facebook
+- ✅ Instagram
+- ✅ SoundCloud
+- ✅ Dailymotion
+- ✅ And [1000+ more](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
+
+---
+
+## 📂 Output & File Structure
+
+- **Single video/audio:** saved as `Video Title.mp4` or `Video Title.mp3` in your chosen folder
+- **Playlist:** saved inside a subfolder named after the playlist:
+  ```
+  📂 Output Folder/
+  └── 📂 Playlist Name/
+      ├── 1 - Video One.mp4
+      ├── 2 - Video Two.mp4
+      └── 3 - Video Three.mp4
+  ```
+
+File names are automatically sanitized to remove characters invalid in file systems (`\ / * ? : " < > |`).
+
+---
+
+## 🕘 Download History
+
+The app automatically saves a history of every completed download to:
+
+| OS | Location |
+|---|---|
+| Windows | `%APPDATA%\Max Downloader - MD Lite App\downloads_history.json` |
+| macOS | `~/Library/Application Support/Max Downloader - MD Lite App/downloads_history.json` |
+| Linux | `~/.local/share/Max Downloader - MD Lite App/downloads_history.json` |
+
+Each entry records:
+
+```json
+{
+  "title": "Video Title",
+  "file": "/path/to/file.mp4",
+  "format": "MP4",
+  "size_bytes": 104857600,
+  "size": "100.00 MB",
+  "when": "2024-08-15 14:32:01",
+  "url": "https://youtube.com/watch?v=...",
+  "thumb_url": "https://i.ytimg.com/..."
+}
+```
+
+---
+
+## ⚙️ Settings
+
+Settings are persisted across sessions in an `.ini` file:
+
+| OS | Location |
+|---|---|
+| Windows | `%APPDATA%\Max Downloader - MD Lite App\settings.ini` |
+| macOS | `~/Library/Application Support/Max Downloader - MD Lite App/settings.ini` |
+| Linux | `~/.local/share/Max Downloader - MD Lite App/settings.ini` |
+
+**Saved settings:**
+
+| Key | Default | Description |
+|---|---|---|
+| `default_format` | `MP4` | Preferred download format |
+| `output_dir` | Working directory | Last used output folder |
+
+---
+
+## 🔄 Update
+
+The **Update** tab allows you to update `yt-dlp` to the latest version without leaving the app.
+
+1. Click **Check and Update**
+2. The app runs `yt-dlp -U` in the background
+3. A message will inform you whether yt-dlp was updated or is already up to date
+
+> This only updates **yt-dlp**. To update FFmpeg, download a new binary from the [official FFmpeg website](https://ffmpeg.org/download.html).
+
+---
+
+## 📁 Project Structure
+
+```
+md-lite-app/
+├── main.py                  ← Main application source code
+├── lite_app_logo.ico        ← App window icon (optional)
+├── yt-dlp(.exe)             ← yt-dlp binary
+├── ffmpeg/
+│   └── ffmpeg(.exe)         ← FFmpeg binary
+└── README.md
+```
+
+**App data (generated at runtime):**
+
+```
+[DATA_DIR]/
+├── settings.ini             ← User preferences
+├── downloads_history.json   ← Download log
+└── logs.txt                 ← Application logs
+```
+
+---
+
+## 📦 Building the Executable
+
+To build your own `.exe` from source using **PyInstaller**:
+
+### 1. Install PyInstaller
+
+```bash
+pip install pyinstaller
+```
+
+### 2. Build the executable
+
+```bash
+pyinstaller --onefile --windowed --icon=lite_app_logo.ico \
+  --add-binary "yt-dlp.exe;." \
+  --add-binary "ffmpeg/ffmpeg.exe;ffmpeg" \
+  --name "MD_Lite_App_v2.1.2" \
+  main.py
+```
+
+### 3. Collect the output
+
+The compiled executable will be in the `dist/` folder. Distribute it as described in the [Download section](#-download-executable).
+
+---
+
+## 🔧 Troubleshooting
+
+**`yt-dlp.exe not found` error**
+- Make sure `yt-dlp.exe` is in the same folder as the `.exe` or the script
+- Re-download it from the [yt-dlp releases page](https://github.com/yt-dlp/yt-dlp/releases/latest)
+
+**`ffmpeg.exe not found` error**
+- Make sure `ffmpeg.exe` is inside a subfolder called `ffmpeg/` next to the app
+- Download FFmpeg from [gyan.dev](https://www.gyan.dev/ffmpeg/builds/)
+
+**Download fails for a specific site**
+- Update yt-dlp using the **Update** tab — outdated yt-dlp is the most common cause
+- Check the logs at `logs.txt` in the app's data directory for details
+
+**App crashes on startup (source)**
+- Confirm you are using **Python 3.10 or higher** (required for `str | None` syntax)
+- Install missing dependencies: `pip install requests`
+
+**No audio or video after download**
+- Ensure FFmpeg is correctly placed — it is required for merging video and audio streams
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/my-feature`
+3. Make your changes and commit: `git commit -m "Add my feature"`
+4. Push to your fork: `git push origin feature/my-feature`
+5. Open a Pull Request
+
+Please open an issue first for major changes so we can discuss what you'd like to change.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+> **Disclaimer:** This tool is intended for downloading content you have the right to download. Please respect copyright laws and the terms of service of websites you use it with. The developers are not responsible for any misuse.
