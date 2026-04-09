@@ -56,6 +56,8 @@ It is built with Python using **Tkinter** for the interface and relies on the po
 
 ## 🖥️ Screenshots
 
+> *(Add screenshots of your app here)*
+
 | Main Download Tab | Update Tab |
 |:-----------------:|:----------:|
 | ![download tab](screenshots/download_tab.png) | ![update tab](screenshots/update_tab.png) |
@@ -106,19 +108,102 @@ pip install requests
 > sudo apt install python3-tk
 > ```
 
-### 3. Add yt-dlp and FFmpeg
+### 3. Download yt-dlp
 
-Place the binaries next to `main.py` (or your script file):
+yt-dlp is the core engine used to fetch and download media.
+
+#### 🪟 Windows
+1. Go to the [yt-dlp releases page](https://github.com/yt-dlp/yt-dlp/releases/latest)
+2. Download `yt-dlp.exe`
+3. Place it in the root of the project folder (next to `main.py`)
+
+#### 🍎 macOS
+```bash
+brew install yt-dlp
+```
+Or download the binary manually:
+```bash
+curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o yt-dlp
+chmod +x yt-dlp
+```
+
+#### 🐧 Linux
+```bash
+sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+sudo chmod a+rx /usr/local/bin/yt-dlp
+```
+Or place it locally next to `main.py`:
+```bash
+curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o yt-dlp
+chmod +x yt-dlp
+```
+
+---
+
+### 4. Download FFmpeg
+
+FFmpeg is required for merging video/audio streams and converting to MP3.
+
+#### 🪟 Windows
+1. Go to [https://www.gyan.dev/ffmpeg/builds/](https://www.gyan.dev/ffmpeg/builds/)
+2. Download `ffmpeg-release-essentials.zip`
+3. Extract the archive
+4. Inside the extracted folder, navigate to `bin/` and copy `ffmpeg.exe`
+5. Create a `ffmpeg/` subfolder inside the project and paste `ffmpeg.exe` there:
 
 ```
 📂 md-lite-app/
 ├── main.py
-├── yt-dlp              ← yt-dlp binary (yt-dlp.exe on Windows)
+├── yt-dlp.exe
 └── 📂 ffmpeg/
-    └── ffmpeg          ← ffmpeg binary (ffmpeg.exe on Windows)
+    └── ffmpeg.exe   ← here
 ```
 
-### 4. Run the app
+#### 🍎 macOS
+```bash
+brew install ffmpeg
+```
+Or download a static build from [https://evermeet.cx/ffmpeg/](https://evermeet.cx/ffmpeg/), then:
+```bash
+mkdir -p ffmpeg
+mv ffmpeg_downloaded_binary ffmpeg/ffmpeg
+chmod +x ffmpeg/ffmpeg
+```
+
+#### 🐧 Linux
+```bash
+sudo apt install ffmpeg        # Debian/Ubuntu
+sudo dnf install ffmpeg        # Fedora
+sudo pacman -S ffmpeg          # Arch
+```
+Or place a static binary locally:
+```bash
+mkdir -p ffmpeg
+# move your downloaded binary to:
+# ffmpeg/ffmpeg
+chmod +x ffmpeg/ffmpeg
+```
+
+> 💡 On macOS and Linux, if ffmpeg is installed system-wide (via brew or apt), the app will find it automatically. The local `ffmpeg/` subfolder takes priority when running from source.
+
+---
+
+### 5. Final folder structure
+
+After completing steps 3 and 4, your project folder should look like this:
+
+```
+📂 md-lite-app/
+├── main.py
+├── yt-dlp(.exe)         ← yt-dlp binary
+├── 📂 ffmpeg/
+│   └── ffmpeg(.exe)     ← FFmpeg binary
+└── README.md
+```
+
+---
+
+### 6. Run the app
 
 ```bash
 python main.py
