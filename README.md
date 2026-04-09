@@ -56,8 +56,6 @@ It is built with Python using **Tkinter** for the interface and relies on the po
 
 ## 🖥️ Screenshots
 
-> *(Add screenshots of your app here)*
-
 | Main Download Tab | Update Tab |
 |:-----------------:|:----------:|
 | ![download tab](screenshots/download_tab.png) | ![update tab](screenshots/update_tab.png) |
