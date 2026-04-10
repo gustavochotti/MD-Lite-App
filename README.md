@@ -91,7 +91,7 @@ It is built with Python using **Tkinter** for the interface and relies on the po
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/md-lite-app.git
+git clone https://github.com/gustavochotti/md-lite-app.git
 cd md-lite-app
 ```
 
